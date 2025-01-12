@@ -1,21 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Creative Writing Assistant</title>
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <h1>Creative Writing Assistant</h1>
-    <form method="POST" action="/generate">
-      <label>Genre:</label>
-      <input type="text" name="genre" required />
-      <br />
-      <label>Theme:</label>
-      <input type="text" name="theme" required />
-      <br />
-      <label>Character:</label>
-      <input type="text" name="character" required />
-      <br />
-      <button type="submit">Generate</button>
-    </form>
+    <div class="container">
+      <h1>Creative Writing Assistant</h1>
+      <form id="writingForm">
+        <label for="genre">Genre:</label>
+        <input
+          type="text"
+          id="genre"
+          name="genre"
+          placeholder="e.g., Fantasy"
+          required
+        />
+        <label for="theme">Theme:</label>
+        <input
+          type="text"
+          id="theme"
+          name="theme"
+          placeholder="e.g., Adventure in the forest"
+          required
+        />
+        <label for="character">Character:</label>
+        <input
+          type="text"
+          id="character"
+          name="character"
+          placeholder="e.g., A curious hero"
+          required
+        />
+        <button type="submit">Generate Story</button>
+      </form>
+      <div id="output" class="paper">
+        <p id="story">Once upon a time...</p>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("writingForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const genre = document.getElementById("genre").value;
+          const theme = document.getElementById("theme").value;
+          const character = document.getElementById("character").value;
+
+          const response = await fetch("/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ genre, theme, character }),
+          });
+
+          const data = await response.json();
+          document.getElementById("story").innerText =
+            data.outline || "Error generating story. Please try again.";
+        });
+    </script>
   </body>
 </html>

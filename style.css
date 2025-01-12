@@ -1,0 +1,84 @@
+/* Center the container */
+body {
+  font-family: "Garamond", serif;
+  background-color: #f5f0e1; /* Light parchment color */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("images/parchment-texture.jpg"); /* Optional texture */
+  background-size: cover;
+  background-attachment: fixed;
+  color: #3a2f2f; /* Dark sepia */
+}
+
+.container {
+  width: 80%;
+  max-width: 800px;
+  background: rgba(245, 240, 225, 0.9); /* Slight transparency */
+  padding: 40px 30px;
+  border: 1px solid #9b7e53; /* Subtle border */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: left;
+  font-size: 1.2em;
+  line-height: 1.8;
+  font-style: italic;
+  position: relative;
+}
+
+/* Add "paper-like" effects */
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.1), transparent 60%);
+  z-index: -1;
+}
+
+/* Placeholder text style */
+textarea {
+  width: 100%;
+  height: 300px;
+  padding: 20px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: "Garamond", serif;
+  font-size: 1.2em;
+  color: #3a2f2f;
+  background: none;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  line-height: 1.8;
+}
+
+textarea::placeholder {
+  color: #9b7e53; /* Subtle sepia tone */
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Button style */
+button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  font-family: "Garamond", serif;
+  background-color: #c0a472;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #3a2f2f;
+  color: #c0a472;
+}
